@@ -1,0 +1,12 @@
+﻿.login-box, .signup-box{
+    width: 400px;
+    height: auto;
+    border: 1px solid black;
+}
+
+.bg-dark {
+    background-color: black !important;
+    color: white;
+    height: 30px;
+    padding-top: 5px;
+}

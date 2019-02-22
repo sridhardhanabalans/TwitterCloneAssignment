@@ -1,0 +1,117 @@
+﻿@model Assignment1.Models.Profile
+
+@{
+    ViewBag.Title = "ProfileHome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Styles.css" rel="stylesheet" />
+    <title>SignUp</title>
+</head>
+<body>
+
+    <div class="container bg-dark">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-3 text-left">
+                <strong>My Twitter Clone</strong>
+            </div>
+            <div class="col-md-3 text-right">
+                <b>Welcome @Model.fullName! </b>
+            </div>
+            <div class="col-md-1 text-right">
+                @Html.ActionLink("Home", "ProfileHome", new { id = Session["user"].ToString() }) |
+            </div>
+            <div class="col-md-1 text-right">
+                @Html.ActionLink("Profile", "ProfilePage", new { id = Session["user"].ToString() }) |
+            </div>
+            <div class="col-md-1 text-right">
+                @Html.ActionLink("SignOut", "SignOut", "Home")
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="container">
+                    <div class="row text-left">
+                        <div class="col-md-8">
+                            @Html.TextBox("SearchUser", "", new { placeholder = "search user", @class = "form-control" })
+                        </div>
+                        <div class="col-md-4">
+                            <input type="submit" value="Search" class="btn btn-primary" id="btnSearchUser" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <b>Search Result:</b>
+                    </div>
+                    <br />
+                    <div class="row text-left">
+                        <div class="col-md-8">
+                            @Html.TextBox("SearchResult", "", new { placeholder = "search result", @class = "form-control" })
+                        </div>
+                        <div class="col-md-4">
+                            <input type="submit" value="Visit Profile" class="btn btn-primary btn-sm" id="btnGoTo" />
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+
+                    <div class="row">
+                        @Html.ActionLink(Model.tweetCount.ToString(), "ProfilePage", new { id = Session["user"].ToString() }) Tweets
+                    </div>
+                    <br />
+                    <div class="row">
+                        @Html.ActionLink(Model.followingCount.ToString(), "ProfilePage", new { id = Session["user"].ToString() }) Following
+                    </div>
+                    <br />
+                    <div class="row">
+                        @Html.ActionLink(Model.followersCount.ToString(), "ProfilePage", new { id = Session["user"].ToString() }) Followers
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="container">
+                    <div class="row">
+                        <label>What are you doing now?</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.TextAreaFor(m => m.newTweet, new { id = "newTweet", style = "width: 102%; max-width: 102%; height: 100px" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row text-right">
+                        <div class="col-md-11"></div>
+                        <input type="submit" value="Update" class="btn btn-primary col-md-1" id="tweetButton" />
+                    </div>
+                    <br />
+                    <div class="row">
+                        <label>Tweets</label>
+                    </div>
+                    <div id="div_GetTweets">
+                        @Html.Partial("~/Views/Shared/GetTweets.cshtml", Model.allTweets)
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+
+</body>
+</html>

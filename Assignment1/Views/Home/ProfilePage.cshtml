@@ -1,0 +1,122 @@
+﻿@model Assignment1.Models.Profile
+
+@{
+    ViewBag.Title = "ProfilePage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4>@Model.fullName's Profile</h4>
+    <br/>
+    <input type="button" value="Follow" class="btn btn-primary btn-sm" id="followUser" /> 
+    <input type="button" value="UnFollow" class="btn btn-primary  btn-sm" id="unFollowUser" /> 
+    @Html.ActionLink("Edit Profile", "EditProfile", new { id = Session["user"].ToString() })
+    @Html.Hidden("profileuser", Model.user_id)
+    <br />
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.joined)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.joined)
+        </dd>
+    </dl>
+
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-striped table-bordered table-hover">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.following)
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model.following)
+            {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.user_id, "ProfilePage", new { id = item.user_id })
+                        </td>
+                    </tr>
+                    }
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-striped table-bordered table-hover">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.followers)
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model.followers)
+            {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(item.user_id, "ProfilePage", new { id = item.user_id })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table table-striped table-bordered table-hover">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.selfTweets.FirstOrDefault().message)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.selfTweets.FirstOrDefault().created)
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model.selfTweets)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.message)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.created)
+                            </td>
+                        </tr>
+                    }
+                </table>
+                </div>
+            </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Deactivate Account", "Delete", new { id = Session["user"].ToString() }) |
+    @Html.ActionLink("Back to Home", "ProfileHome", new { id = Session["user"].ToString() })
+</p>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
