@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="083dff4002934271a0a63c4690fc12c3" Name="Diagram1">
+        <EntityTypeShape EntityType="AssignmentModel.FOLLOWING" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssignmentModel.PERSON" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssignmentModel.TWEET" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="AssignmentModel.FK__FOLLOWING__follo__3C34F16F" ManuallyRouted="false" />
+        <AssociationConnector Association="AssignmentModel.FK__FOLLOWING__user___3D2915A8" ManuallyRouted="false" />
+        <AssociationConnector Association="AssignmentModel.FK__TWEET__user_id__14270015" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
